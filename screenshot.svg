@@ -1,0 +1,135 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" width="100%" height="100%">
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0F172A" />
+      <stop offset="100%" stop-color="#1E293B" />
+    </linearGradient>
+
+    <!-- Card Background -->
+    <linearGradient id="cardGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1E293B" stop-opacity="0.9" />
+      <stop offset="100%" stop-color="#0F172A" stop-opacity="0.95" />
+    </linearGradient>
+
+    <!-- Gold Foil Reward Gradient -->
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F59E0B" />
+      <stop offset="50%" stop-color="#D97706" />
+      <stop offset="100%" stop-color="#78350F" />
+    </linearGradient>
+
+    <!-- Silver Scratch Foil Gradient -->
+    <linearGradient id="silverFoil" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E2E8F0" />
+      <stop offset="50%" stop-color="#94A3B8" />
+      <stop offset="100%" stop-color="#475569" />
+    </linearGradient>
+
+    <filter id="cardShadow" x="-10%" y="-10%" width="120%" height="125%">
+      <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#000000" flood-opacity="0.5" />
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="400" rx="16" fill="url(#bgGrad)" />
+
+  <!-- Header -->
+  <text x="400" y="42" text-anchor="middle" fill="#F59E0B" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="20" font-weight="800" letter-spacing="0.5">
+    scratch_reveal
+  </text>
+  <text x="400" y="66" text-anchor="middle" fill="#94A3B8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13">
+    GPU-Accelerated Scratch-to-Reveal Canvas · Sub-Millisecond Bitmask Area Tracking
+  </text>
+
+  <!-- Left: Scratch Card Card -->
+  <g transform="translate(48, 90)">
+    <rect width="336" height="275" rx="20" fill="url(#cardGrad)" stroke="#334155" stroke-width="1.5" filter="url(#cardShadow)" />
+
+    <!-- Revealed Prize Card (Underneath) -->
+    <g transform="translate(24, 24)">
+      <rect width="288" height="150" rx="16" fill="url(#goldGrad)" />
+      <circle cx="144" cy="60" r="24" fill="#FEF08A" fill-opacity="0.3" />
+      <path d="M 144,48 L 148,58 L 158,59 L 150,66 L 152,76 L 144,71 L 136,76 L 138,66 L 130,59 L 140,58 Z" fill="#FDE047" />
+      <text x="144" y="98" text-anchor="middle" fill="#FFFFFF" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="16" font-weight="800">
+        ₹500 CASHBACK
+      </text>
+      <text x="144" y="118" text-anchor="middle" fill="#FEF08A" font-family="monospace" font-size="11" font-weight="bold">
+        CODE: LUCKY2026
+      </text>
+
+      <!-- Simulated Scratched Silver Foil Overlay with Eraser Stroke Cutouts -->
+      <path d="M 0,0 L 288,0 L 288,150 L 0,150 Z M 50,40 Q 120,20 180,70 Q 230,110 260,60 Q 200,120 130,100 Q 70,80 50,40 Z" fill="url(#silverFoil)" fill-rule="evenodd" rx="16" />
+    </g>
+
+    <!-- Progress Meter -->
+    <g transform="translate(24, 195)">
+      <text x="0" y="14" fill="#FFFFFF" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="12" font-weight="bold">Scratch Progress</text>
+      <text x="288" y="14" text-anchor="end" fill="#F59E0B" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="12" font-weight="bold">68%</text>
+
+      <rect y="24" width="288" height="8" rx="4" fill="#0F172A" />
+      <rect y="24" width="195" height="8" rx="4" fill="#F59E0B" />
+    </g>
+
+    <text x="168" y="254" text-anchor="middle" fill="#64748B" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="11">
+      Threshold: 60% · Unlocked &amp; Revealed
+    </text>
+  </g>
+
+  <!-- Right: Technical Capabilities Card -->
+  <g transform="translate(416, 90)">
+    <rect width="336" height="275" rx="20" fill="url(#cardGrad)" stroke="#334155" stroke-width="1.5" filter="url(#cardShadow)" />
+
+    <text x="24" y="32" fill="#F8FAFC" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="15" font-weight="700">
+      Key Technical Advantages
+    </text>
+
+    <!-- Point 1 -->
+    <g transform="translate(24, 52)">
+      <circle cx="12" cy="16" r="10" fill="#F59E0B" fill-opacity="0.2" />
+      <text x="12" y="20" text-anchor="middle" fill="#F59E0B" font-size="11" font-weight="bold">⚡</text>
+      <text x="32" y="14" fill="#E2E8F0" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="12" font-weight="600">
+        Sub-0.1ms Bitmask Area Tracking
+      </text>
+      <text x="32" y="28" fill="#94A3B8" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10">
+        No CPU bitmap pixel read-back latency or frame drops
+      </text>
+    </g>
+
+    <!-- Point 2 -->
+    <g transform="translate(24, 102)">
+      <circle cx="12" cy="16" r="10" fill="#10B981" fill-opacity="0.2" />
+      <text x="12" y="20" text-anchor="middle" fill="#10B981" font-size="11" font-weight="bold">🚀</text>
+      <text x="32" y="14" fill="#E2E8F0" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="12" font-weight="600">
+        GPU BlendMode.clear Pipeline
+      </text>
+      <text x="32" y="28" fill="#94A3B8" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10">
+        Buttery-smooth 120 FPS eraser strokes on mobile
+      </text>
+    </g>
+
+    <!-- Point 3 -->
+    <g transform="translate(24, 152)">
+      <circle cx="12" cy="16" r="10" fill="#38BDF8" fill-opacity="0.2" />
+      <text x="12" y="20" text-anchor="middle" fill="#38BDF8" font-size="11" font-weight="bold">🎁</text>
+      <text x="32" y="14" fill="#E2E8F0" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="12" font-weight="600">
+        Threshold Auto-Reveal &amp; Haptics
+      </text>
+      <text x="32" y="28" fill="#94A3B8" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10">
+        Automatic fade/scale animation when reward is unlocked
+      </text>
+    </g>
+
+    <!-- Point 4 -->
+    <g transform="translate(24, 202)">
+      <circle cx="12" cy="16" r="10" fill="#A855F7" fill-opacity="0.2" />
+      <text x="12" y="20" text-anchor="middle" fill="#C084FC" font-size="11" font-weight="bold">🌐</text>
+      <text x="32" y="14" fill="#E2E8F0" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="12" font-weight="600">
+        Zero Native C++ Dependencies
+      </text>
+      <text x="32" y="28" fill="#94A3B8" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10">
+        100% pure Flutter across iOS, Android, Web, and Desktop
+      </text>
+    </g>
+  </g>
+</svg>
