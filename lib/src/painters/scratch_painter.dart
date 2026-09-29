@@ -33,9 +33,9 @@ class ScratchPainter extends CustomPainter {
 
     // 1. Offscreen layer for BlendMode.clear masking
     canvas.saveLayer(
-        bounds,
-        Paint()
-          ..color = Color.fromARGB((255 * opacity).toInt(), 255, 255, 255));
+      bounds,
+      Paint()..color = Color.fromARGB((255 * opacity).toInt(), 255, 255, 255),
+    );
 
     // 2. Draw Cover Foil (Color / Gradient)
     final Paint coverPaint = Paint();
@@ -46,16 +46,32 @@ class ScratchPainter extends CustomPainter {
     }
     canvas.drawRect(bounds, coverPaint);
 
-    // 3. Clear scratched paths using GPU BlendMode.clear
+    // 3. Clear scratched paths using GPU BlendMode.clear with configured shape
     final Paint clearPaint = Paint()
       ..blendMode = BlendMode.clear
-      ..style = PaintingStyle.stroke
-      ..strokeCap = StrokeCap.round
       ..isAntiAlias = true;
 
     for (final stroke in strokes) {
-      clearPaint.strokeWidth = stroke.size;
-      canvas.drawLine(stroke.start, stroke.end, clearPaint);
+      switch (stroke.shape) {
+        case ScratchBrushShape.circle:
+        case ScratchBrushShape.coin:
+          clearPaint.style = PaintingStyle.stroke;
+          clearPaint.strokeCap = stroke.shape == ScratchBrushShape.coin
+              ? StrokeCap.square
+              : StrokeCap.round;
+          clearPaint.strokeWidth = stroke.size;
+          canvas.drawLine(stroke.start, stroke.end, clearPaint);
+          break;
+        case ScratchBrushShape.square:
+          clearPaint.style = PaintingStyle.fill;
+          final Rect strokeRect = Rect.fromCenter(
+            center: stroke.end,
+            width: stroke.size,
+            height: stroke.size,
+          );
+          canvas.drawRect(strokeRect, clearPaint);
+          break;
+      }
     }
 
     canvas.restore();

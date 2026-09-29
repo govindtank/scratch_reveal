@@ -1,3 +1,13 @@
+## 1.1.0
+
+* Added `brushShape` support (`circle`, `coin`, `square`) in `ScratchReveal` widget and `ScratchPainter`.
+* Added `onRevealComplete` callback triggered when auto-reveal fade animation finishes.
+* Added `enabled` flag to programmatically toggle touch scratch interactions.
+* Added `progress` and `isRevealed` getters on `ScratchRevealState`.
+* Added explicit `platforms` declaration (Android, iOS, Web, macOS, Windows, Linux).
+
+## 1.0.0 Added `platforms` declaration (android, ios, linux, macos, windows, web).
+
 ## 1.0.0
 
 * Initial stable release of `scratch_reveal`.

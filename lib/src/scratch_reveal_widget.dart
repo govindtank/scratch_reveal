@@ -21,6 +21,9 @@ class ScratchReveal extends StatefulWidget {
   /// Thickness of the scratch brush stroke in logical pixels.
   final double brushSize;
 
+  /// Shape of the brush tip (circle, coin, square).
+  final ScratchBrushShape brushShape;
+
   /// Threshold fraction in `[0.0, 1.0]` required to trigger auto-reveal.
   final double threshold;
 
@@ -33,11 +36,17 @@ class ScratchReveal extends StatefulWidget {
   /// Callback triggered when the scratch percentage crosses the [threshold].
   final VoidCallback? onThresholdReached;
 
+  /// Callback triggered when the reveal animation completes.
+  final VoidCallback? onRevealComplete;
+
   /// Callback emitting continuous scratch progress in `[0.0, 1.0]`.
   final ValueChanged<double>? onProgressUpdate;
 
   /// Whether to trigger a light haptic tap on scratch strokes.
   final bool enableHaptics;
+
+  /// Whether scratching interaction is enabled.
+  final bool enabled;
 
   /// Creates a [ScratchReveal] widget.
   const ScratchReveal({
@@ -47,12 +56,15 @@ class ScratchReveal extends StatefulWidget {
     this.coverColor = const Color(0xFF64748B),
     this.coverGradient,
     this.brushSize = 36.0,
+    this.brushShape = ScratchBrushShape.circle,
     this.threshold = 0.60,
     this.autoReveal = true,
     this.revealDuration = const Duration(milliseconds: 600),
     this.onThresholdReached,
+    this.onRevealComplete,
     this.onProgressUpdate,
     this.enableHaptics = false,
+    this.enabled = true,
   });
 
   @override
@@ -77,7 +89,11 @@ class ScratchRevealState extends State<ScratchReveal>
     _revealController = AnimationController(
       vsync: this,
       duration: widget.revealDuration,
-    );
+    )..addStatusListener((status) {
+        if (status == AnimationStatus.completed) {
+          widget.onRevealComplete?.call();
+        }
+      });
     _opacityAnimation = Tween<double>(begin: 1.0, end: 0.0).animate(
       CurvedAnimation(parent: _revealController, curve: Curves.easeOut),
     );
@@ -88,6 +104,12 @@ class ScratchRevealState extends State<ScratchReveal>
     _revealController.dispose();
     super.dispose();
   }
+
+  /// Current scratch progress in `[0.0, 1.0]`.
+  double get progress => _bitmask.progress;
+
+  /// Whether the scratch threshold has been reached.
+  bool get isRevealed => _isThresholdReached;
 
   /// Resets the scratch foil and bitmask grid back to pristine state.
   void reset() {
@@ -112,7 +134,7 @@ class ScratchRevealState extends State<ScratchReveal>
   }
 
   void _onPanStart(DragStartDetails details, Size size) {
-    if (_isThresholdReached) {
+    if (_isThresholdReached || !widget.enabled) {
       return;
     }
     _lastPoint = details.localPosition;
@@ -120,7 +142,7 @@ class ScratchRevealState extends State<ScratchReveal>
   }
 
   void _onPanUpdate(DragUpdateDetails details, Size size) {
-    if (_isThresholdReached) {
+    if (_isThresholdReached || !widget.enabled) {
       return;
     }
     final Offset currentPoint = details.localPosition;
@@ -136,19 +158,23 @@ class ScratchRevealState extends State<ScratchReveal>
 
   void _addStroke(Offset start, Offset end, Size size) {
     setState(() {
-      _strokes
-          .add(ScratchStroke(start: start, end: end, size: widget.brushSize));
+      _strokes.add(ScratchStroke(
+        start: start,
+        end: end,
+        size: widget.brushSize,
+        shape: widget.brushShape,
+      ));
     });
 
     _bitmask.scratchLine(start, end, widget.brushSize / 2, size);
-    final double progress = _bitmask.progress;
-    widget.onProgressUpdate?.call(progress);
+    final double currentProgress = _bitmask.progress;
+    widget.onProgressUpdate?.call(currentProgress);
 
     if (widget.enableHaptics) {
       HapticFeedback.selectionClick();
     }
 
-    if (!_isThresholdReached && progress >= widget.threshold) {
+    if (!_isThresholdReached && currentProgress >= widget.threshold) {
       _isThresholdReached = true;
       if (widget.autoReveal) {
         _revealController.forward();
@@ -177,20 +203,23 @@ class ScratchRevealState extends State<ScratchReveal>
                   return const SizedBox.shrink();
                 }
 
-                return GestureDetector(
-                  behavior: HitTestBehavior.opaque,
-                  onPanStart: (d) => _onPanStart(d, size),
-                  onPanUpdate: (d) => _onPanUpdate(d, size),
-                  onPanEnd: _onPanEnd,
-                  child: CustomPaint(
-                    size: size,
-                    painter: ScratchPainter(
-                      strokes: _strokes,
-                      coverColor: widget.coverColor,
-                      coverGradient: widget.coverGradient,
-                      opacity: _opacityAnimation.value,
+                return Opacity(
+                  opacity: _opacityAnimation.value,
+                  child: GestureDetector(
+                    behavior: HitTestBehavior.opaque,
+                    onPanStart: (d) => _onPanStart(d, size),
+                    onPanUpdate: (d) => _onPanUpdate(d, size),
+                    onPanEnd: _onPanEnd,
+                    child: CustomPaint(
+                      size: size,
+                      painter: ScratchPainter(
+                        strokes: _strokes,
+                        coverColor: widget.coverColor,
+                        coverGradient: widget.coverGradient,
+                        opacity: 1.0,
+                      ),
+                      child: widget.cover,
                     ),
-                    child: widget.cover,
                   ),
                 );
               },
