@@ -17,3 +17,8 @@
 * Haptic feedback integration and programmatic `reset()` / `reveal()` controls.
 * Interactive example app with real-time progress bar, code reveal, and customization sliders.
 * 100% test coverage and zero pub.dev warnings.
+
+## 1.1.1
+
+* Added ScratchFoilPreset with gold and silver metallic foil presets.
+* Automated pub.dev OIDC deployment.

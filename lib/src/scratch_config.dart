@@ -46,3 +46,42 @@ class ScratchStroke {
     this.shape = ScratchBrushShape.circle,
   });
 }
+
+/// Preset foil patterns and textures for scratch cards.
+class ScratchFoilPreset {
+  /// Silver foil with metallic linear gradient.
+  static BoxDecoration silver({BorderRadius? borderRadius}) {
+    return BoxDecoration(
+      borderRadius: borderRadius,
+      gradient: const LinearGradient(
+        colors: [
+          Color(0xFFE0E0E0),
+          Color(0xFFBDBDBD),
+          Color(0xFFEEEEEE),
+          Color(0xFF9E9E9E)
+        ],
+        stops: [0.0, 0.35, 0.7, 1.0],
+        begin: Alignment.topLeft,
+        end: Alignment.bottomRight,
+      ),
+    );
+  }
+
+  /// Gold foil with metallic linear gradient.
+  static BoxDecoration gold({BorderRadius? borderRadius}) {
+    return BoxDecoration(
+      borderRadius: borderRadius,
+      gradient: const LinearGradient(
+        colors: [
+          Color(0xFFFFDF00),
+          Color(0xFFD4AF37),
+          Color(0xFFFFE57F),
+          Color(0xFFAA771C)
+        ],
+        stops: [0.0, 0.35, 0.7, 1.0],
+        begin: Alignment.topLeft,
+        end: Alignment.bottomRight,
+      ),
+    );
+  }
+}
