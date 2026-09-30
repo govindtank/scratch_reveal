@@ -1,3 +1,8 @@
+## 1.1.1
+
+* Added `ScratchFoilPreset` with gold and silver metallic foil presets.
+* Verified CI/CD workflows.
+
 ## 1.1.0
 
 * Added `brushShape` support (`circle`, `coin`, `square`) in `ScratchReveal` widget and `ScratchPainter`.
@@ -5,8 +10,6 @@
 * Added `enabled` flag to programmatically toggle touch scratch interactions.
 * Added `progress` and `isRevealed` getters on `ScratchRevealState`.
 * Added explicit `platforms` declaration (Android, iOS, Web, macOS, Windows, Linux).
-
-## 1.0.0 Added `platforms` declaration (android, ios, linux, macos, windows, web).
 
 ## 1.0.0
 
@@ -17,8 +20,3 @@
 * Haptic feedback integration and programmatic `reset()` / `reveal()` controls.
 * Interactive example app with real-time progress bar, code reveal, and customization sliders.
 * 100% test coverage and zero pub.dev warnings.
-
-## 1.1.1
-
-* Added ScratchFoilPreset with gold and silver metallic foil presets.
-* Automated pub.dev OIDC deployment.
