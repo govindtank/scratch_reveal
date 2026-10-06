@@ -117,8 +117,10 @@ class ScratchPainter extends CustomPainter {
           final offset2 = normal * -(stroke.size * 0.28);
 
           clearPaint.strokeWidth = stroke.size * 0.45;
-          canvas.drawLine(stroke.start + offset1, stroke.end + offset1, clearPaint);
-          canvas.drawLine(stroke.start + offset2, stroke.end + offset2, clearPaint);
+          canvas.drawLine(
+              stroke.start + offset1, stroke.end + offset1, clearPaint);
+          canvas.drawLine(
+              stroke.start + offset2, stroke.end + offset2, clearPaint);
         }
         break;
 
@@ -138,7 +140,8 @@ class ScratchPainter extends CustomPainter {
           final jitterScale = (stroke.jitter != 0.0 ? stroke.jitter : 0.5);
           final offset = normal * (stroke.size * 0.35 * (jitterScale - 0.5));
           clearPaint.strokeWidth = stroke.size * 0.5;
-          canvas.drawLine(stroke.start + offset, stroke.end + offset, clearPaint);
+          canvas.drawLine(
+              stroke.start + offset, stroke.end + offset, clearPaint);
         }
         break;
 
@@ -178,7 +181,8 @@ class ScratchPainter extends CustomPainter {
 
       // Center bright glint
       final glintPaint = Paint()
-        ..color = Colors.white.withValues(alpha: (p.opacity * 0.8).clamp(0.0, 1.0))
+        ..color =
+            Colors.white.withValues(alpha: (p.opacity * 0.8).clamp(0.0, 1.0))
         ..style = PaintingStyle.fill;
       canvas.drawCircle(Offset.zero, (r * 0.35).clamp(0.5, 2.0), glintPaint);
 

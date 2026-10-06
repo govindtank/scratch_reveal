@@ -1,16 +1,12 @@
 # scratch_reveal
 
-[![Pub Version](https://img.shields.io/pub/v/scratch_reveal.svg?style=flat-square&color=blue)](https://pub.dev/packages/scratch_reveal)
-[![Pub Points](https://img.shields.io/pub/points/scratch_reveal?style=flat-square[![Pub Points](https://img.shields.io/pub/points/scratch_reveal?style=flat-square&color=2E8B57&label=pub%20points)](https://pub.dev/packages/scratch_reveal/score)color=2E8B57[![Pub Points](https://img.shields.io/pub/points/scratch_reveal?style=flat-square&color=2E8B57&label=pub%20points)](https://pub.dev/packages/scratch_reveal/score)label=pub%20points)](https://pub.dev/packages/scratch_reveal/score)
-[![Live Demo](https://img.shields.io/badge/Live%20Demo-Try%20In%20Browser-00ff88?style=flat-square&logo=flutter)](https://govindtank.github.io/scratch_reveal/)
-[![Pub Likes](https://img.shields.io/pub/likes/scratch_reveal?style=flat-square)](https://pub.dev/packages/scratch_reveal)
-[![CI](https://github.com/govindtank/scratch_reveal/actions/workflows/ci.yml/badge.svg)](https://github.com/govindtank/scratch_reveal/actions)
-[![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg?style=flat-square)](LICENSE)
-
-A high-performance, GPU-accelerated **scratch card** and **scratch-to-reveal canvas** widget for Flutter with **sub-millisecond spatial bitmask area tracking**, smooth auto-reveal animations, and customizable foil styles.
-
 <p align="center">
-  <img src="https://raw.githubusercontent.com/govindtank/scratch_reveal/main/screenshot.svg" width="750" alt="scratch_reveal demo"/>
+  <a href="https://pub.dev/packages/scratch_reveal"><img src="https://img.shields.io/pub/v/scratch_reveal.svg?style=flat-square&color=blue" alt="Pub Version"></a>
+  <a href="https://pub.dev/packages/scratch_reveal/score"><img src="https://img.shields.io/pub/points/scratch_reveal?style=flat-square&color=2E8B57&label=pub%20points" alt="Pub Points"></a>
+  <a href="https://govindtank.github.io/scratch_reveal/"><img src="https://img.shields.io/badge/Live%20Demo-Try%20In%20Browser-00ff88?style=flat-square&logo=flutter" alt="Live Demo"></a>
+  <a href="https://pub.dev/packages/scratch_reveal"><img src="https://img.shields.io/pub/likes/scratch_reveal?style=flat-square" alt="Pub Likes"></a>
+  <a href="https://github.com/govindtank/scratch_reveal/actions"><img src="https://github.com/govindtank/scratch_reveal/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-blue.svg?style=flat-square" alt="License"></a>
 </p>
 
 ---

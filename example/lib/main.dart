@@ -294,7 +294,9 @@ class _ScratchDemoScreenState extends State<ScratchDemoScreen> {
                                   : const Color(0xFF1E222D)),
                         ),
                         child: Text(
-                          _particlesEnabled ? '✨ Particles: ON' : '✨ Particles: OFF',
+                          _particlesEnabled
+                              ? '✨ Particles: ON'
+                              : '✨ Particles: OFF',
                           style: TextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.bold,

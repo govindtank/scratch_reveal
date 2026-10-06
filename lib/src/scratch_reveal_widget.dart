@@ -199,7 +199,8 @@ class ScratchRevealState extends State<ScratchReveal>
 
     final double dt = _lastElapsed == Duration.zero
         ? 0.016
-        : ((elapsed - _lastElapsed).inMicroseconds / 1000000.0).clamp(0.001, 0.05);
+        : ((elapsed - _lastElapsed).inMicroseconds / 1000000.0)
+            .clamp(0.001, 0.05);
     _lastElapsed = elapsed;
 
     setState(() {
@@ -216,7 +217,8 @@ class ScratchRevealState extends State<ScratchReveal>
     for (int i = 0; i < count; i++) {
       final angle = _rng.nextDouble() * 2 * math.pi;
       final speed = 40.0 + _rng.nextDouble() * 120.0;
-      final pDelta = delta.distance > 1.0 ? delta / delta.distance : Offset.zero;
+      final pDelta =
+          delta.distance > 1.0 ? delta / delta.distance : Offset.zero;
 
       final velocity = Offset(
         math.cos(angle) * speed + pDelta.dx * 60.0,
@@ -224,7 +226,8 @@ class ScratchRevealState extends State<ScratchReveal>
       );
 
       _particles.add(ScratchParticle(
-        position: pos + Offset(_rng.nextDouble() * 8 - 4, _rng.nextDouble() * 8 - 4),
+        position:
+            pos + Offset(_rng.nextDouble() * 8 - 4, _rng.nextDouble() * 8 - 4),
         velocity: velocity,
         size: 2.5 + _rng.nextDouble() * 3.5,
         color: _rng.nextBool()
