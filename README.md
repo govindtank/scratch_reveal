@@ -1,7 +1,8 @@
 # scratch_reveal
 
 [![Pub Version](https://img.shields.io/pub/v/scratch_reveal.svg?style=flat-square&color=blue)](https://pub.dev/packages/scratch_reveal)
-[![Pub Points](https://img.shields.io/pub/points/scratch_reveal?style=flat-square&color=2E8B57&label=pub%20points)](https://pub.dev/packages/scratch_reveal/score)
+[![Pub Points](https://img.shields.io/pub/points/scratch_reveal?style=flat-square[![Pub Points](https://img.shields.io/pub/points/scratch_reveal?style=flat-square&color=2E8B57&label=pub%20points)](https://pub.dev/packages/scratch_reveal/score)color=2E8B57[![Pub Points](https://img.shields.io/pub/points/scratch_reveal?style=flat-square&color=2E8B57&label=pub%20points)](https://pub.dev/packages/scratch_reveal/score)label=pub%20points)](https://pub.dev/packages/scratch_reveal/score)
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Try%20In%20Browser-00ff88?style=flat-square&logo=flutter)](https://govindtank.github.io/scratch_reveal/)
 [![Pub Likes](https://img.shields.io/pub/likes/scratch_reveal?style=flat-square)](https://pub.dev/packages/scratch_reveal)
 [![CI](https://github.com/govindtank/scratch_reveal/actions/workflows/ci.yml/badge.svg)](https://github.com/govindtank/scratch_reveal/actions)
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg?style=flat-square)](LICENSE)
