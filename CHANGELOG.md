@@ -1,3 +1,10 @@
+## 1.1.2
+
+* **Realistic Scratch Textures:** Added `ScratchBrushShape.coin` with parallel micro-grooves and `ScratchBrushShape.rough` with jagged organic edges simulating realistic coin lottery scratching.
+* **Foil Dust & Shavings Particles:** Added dynamic metallic foil shaving flakes and sparkle dust physics (`ScratchParticle`) that fly and scatter naturally while scratching.
+* **Factory Constructors:** Added `ScratchReveal.silverLottery()` and `ScratchReveal.goldLottery()` for instant pre-styled scratch cards.
+* **Micro-Texture Shading:** Added subtle foil surface cross-hatch detail in `ScratchPainter`.
+
 ## 1.1.1
 
 * Added `ScratchFoilPreset` with gold and silver metallic foil presets.
