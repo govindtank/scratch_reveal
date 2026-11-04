@@ -80,5 +80,38 @@ void main() {
 
       expect(thresholdFired, isTrue);
     });
+
+    testWidgets('instant scratch punch hole created on tap contact down',
+        (WidgetTester tester) async {
+      double latestProgress = 0.0;
+      final key = GlobalKey<ScratchRevealState>();
+
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: Center(
+              child: SizedBox(
+                width: 200,
+                height: 200,
+                child: ScratchReveal(
+                  key: key,
+                  brushSize: 50.0,
+                  coverColor: Colors.grey,
+                  revealedChild: const Text('PRIZE'),
+                  onProgressUpdate: (p) => latestProgress = p,
+                ),
+              ),
+            ),
+          ),
+        ),
+      );
+
+      await tester.pumpAndSettle();
+      await tester.tap(find.byType(ScratchReveal));
+      await tester.pump();
+
+      expect(latestProgress, greaterThan(0.0));
+      expect(key.currentState?.progress, greaterThan(0.0));
+    });
   });
 }

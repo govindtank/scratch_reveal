@@ -1,0 +1,124 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0B0F19" />
+      <stop offset="50%" stop-color="#0F172A" />
+      <stop offset="100%" stop-color="#020617" />
+    </linearGradient>
+    <linearGradient id="goldFoil" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFE57F" />
+      <stop offset="25%" stop-color="#D4AF37" />
+      <stop offset="55%" stop-color="#FFF9C4" />
+      <stop offset="85%" stop-color="#AA771C" />
+      <stop offset="100%" stop-color="#FFD700" />
+    </linearGradient>
+    <linearGradient id="silverFoil" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F1F5F9" />
+      <stop offset="50%" stop-color="#94A3B8" />
+      <stop offset="100%" stop-color="#475569" />
+    </linearGradient>
+    <linearGradient id="prizeGlow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#F59E0B" />
+      <stop offset="50%" stop-color="#EC4899" />
+      <stop offset="100%" stop-color="#8B5CF6" />
+    </linearGradient>
+    <filter id="cardShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="24" stdDeviation="32" flood-color="#000000" flood-opacity="0.65" />
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)" />
+
+  <!-- Grid pattern -->
+  <g stroke="#334155" stroke-opacity="0.15" stroke-width="1">
+    <path d="M0,70 H1200 M0,140 H1200 M0,210 H1200 M0,280 H1200 M0,350 H1200 M0,420 H1200 M0,490 H1200 M0,560 H1200" />
+    <path d="M70,0 V630 M140,0 V630 M210,0 V630 M280,0 V630 M350,0 V630 M420,0 V630 M490,0 V630 M560,0 V630 M630,0 V630 M700,0 V630 M770,0 V630 M840,0 V630 M910,0 V630 M980,0 V630 M1050,0 V630 M1120,0 V630" />
+  </g>
+
+  <!-- Radial Glow Behind Card -->
+  <circle cx="600" cy="315" r="300" fill="#F59E0B" opacity="0.08" />
+
+  <!-- Main Showcase Container -->
+  <g filter="url(#cardShadow)">
+    <rect x="150" y="75" width="900" height="480" rx="24" fill="#0F172A" stroke="#1E293B" stroke-width="2" />
+    <rect x="150" y="75" width="900" height="480" rx="24" fill="none" stroke="url(#goldFoil)" stroke-width="1.5" stroke-opacity="0.5" />
+  </g>
+
+  <!-- Header Section -->
+  <text x="190" y="130" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-weight="800" font-size="28" fill="#F8FAFC" letter-spacing="-0.5">
+    scratch_reveal
+  </text>
+  <text x="190" y="160" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-weight="500" font-size="14" fill="#94A3B8">
+    Zero-Latency Instant Foil Scratching • Metallic Dust Particles • Fast Bitmask Progress
+  </text>
+
+  <!-- Badges -->
+  <g transform="translate(730, 108)">
+    <rect width="130" height="28" rx="14" fill="#854D0E" fill-opacity="0.3" stroke="#F59E0B" stroke-width="1" />
+    <text x="65" y="18" text-anchor="middle" font-family="monospace" font-size="11" font-weight="bold" fill="#FCD34D">ZERO-LATENCY</text>
+  </g>
+  <g transform="translate(875, 108)">
+    <rect width="135" height="28" rx="14" fill="#15803D" fill-opacity="0.2" stroke="#4ADE80" stroke-width="1" />
+    <text x="67" y="18" text-anchor="middle" font-family="monospace" font-size="11" font-weight="bold" fill="#4ADE80">GPU COMPOSITED</text>
+  </g>
+
+  <!-- Scratch Card Interactive Simulation -->
+  <g transform="translate(190, 190)">
+    <!-- Base Layer: Revealed Prize Card -->
+    <rect width="820" height="305" rx="16" fill="#1E1B4B" stroke="#312E81" stroke-width="1.5" />
+    
+    <!-- Prize Content Behind Foil -->
+    <g transform="translate(310, 100)">
+      <text x="100" y="45" text-anchor="middle" font-size="44">🎁</text>
+      <text x="100" y="95" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="24" font-weight="900" fill="#FBBF24">
+        JACKPOT REVEALED!
+      </text>
+      <text x="100" y="125" text-anchor="middle" font-family="monospace" font-size="14" font-weight="700" fill="#A5B4FC">
+        CLAIM $500 REWARD
+      </text>
+    </g>
+
+    <!-- Top Layer: Metallic Gold Foil with Realistic Scratched Mask Hole -->
+    <path d="M 0 16 Q 0 0 16 0 L 804 0 Q 820 0 820 16 L 820 289 Q 820 305 804 305 L 16 305 Q 0 305 0 289 Z
+             M 240 150 
+             C 270 90, 360 80, 420 120 
+             C 480 160, 540 100, 600 130 
+             C 630 145, 650 200, 590 230 
+             C 520 260, 430 240, 370 210 
+             C 310 180, 210 200, 240 150 Z"
+          fill="url(#goldFoil)" fill-rule="evenodd" />
+
+    <!-- Coin Scraper Tool Mark Simulation -->
+    <g stroke="#FFF9C4" stroke-width="1" stroke-opacity="0.6">
+      <line x1="280" y1="140" x2="350" y2="120" />
+      <line x1="380" y1="130" x2="450" y2="170" />
+      <line x1="480" y1="180" x2="560" y2="150" />
+    </g>
+
+    <!-- Flying Metallic Dust & Sparkle Particles -->
+    <g fill="#FFF9C4">
+      <circle cx="580" cy="110" r="3" />
+      <circle cx="610" cy="95" r="2" />
+      <circle cx="630" cy="120" r="4" fill="#FDE047" />
+      <polygon points="590,85 593,92 600,95 593,98 590,105 587,98 580,95 587,92" fill="#FFFFFF" />
+      <polygon points="450,75 452,80 457,82 452,84 450,89 448,84 443,82 448,80" fill="#FDE047" />
+      <polygon points="320,80 322,84 326,85 322,86 320,90 318,86 314,85 318,84" fill="#FDE047" />
+      <circle cx="340" cy="70" r="2.5" />
+    </g>
+
+    <!-- Coin Scratch Cursor -->
+    <g transform="translate(615, 140)">
+      <circle cx="0" cy="0" r="26" fill="#F59E0B" stroke="#FDE68A" stroke-width="3" />
+      <circle cx="0" cy="0" r="21" fill="none" stroke="#D97706" stroke-width="2" stroke-dasharray="3,2" />
+      <text x="0" y="7" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="900" fill="#78350F">¢</text>
+    </g>
+
+    <!-- Live Progress Bar at Card Bottom -->
+    <g transform="translate(30, 265)">
+      <rect width="760" height="12" rx="6" fill="#0F172A" />
+      <rect width="520" height="12" rx="6" fill="url(#prizeGlow)" />
+      <text x="535" y="11" font-family="monospace" font-size="11" font-weight="bold" fill="#FCD34D">68% SCRATCHED</text>
+    </g>
+  </g>
+</svg>

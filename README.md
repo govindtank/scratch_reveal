@@ -9,18 +9,29 @@
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-blue.svg?style=flat-square" alt="License"></a>
 </p>
 
+<p align="center">
+  <img src="https://raw.githubusercontent.com/govindtank/scratch_reveal/main/doc/assets/scratch_showcase.svg" alt="scratch_reveal Showcase" width="100%">
+</p>
+
+An interactive, high-performance scratch-to-reveal card widget for Flutter. Features **zero-latency real-time foil scratching, instant punch holes on touch down, flying metallic foil dust particles, coin serration brushes, and sub-0.1ms spatial bitmask progress calculation**.
+
 ---
 
 ## ⚡ Why scratch_reveal?
 
-Existing scratch card packages on pub.dev suffer from a fundamental architectural flaw: they calculate scratch coverage by reading raw bitmap pixels out of CPU image buffers on every drag stroke, causing micro-stutters and frame drops.
+Existing scratch card packages on pub.dev suffer from fundamental architectural flaws:
+* 🚫 **Touch-Down Latency**: Gesture drag detectors ignore the initial touch or delay painting until moving 18px past slop thresholds. `scratch_reveal` creates an immediate circular punch hole on pointer contact.
+* 🚫 **Bitmap Pixel Reading Stutters**: Many packages read raw bitmap pixels out of CPU image buffers on every drag frame, causing micro-stutters and frame drops.
+* 🚫 **Dropped Repaints**: Mutable stroke arrays can prevent `CustomPainter` from invalidating. `scratch_reveal`'s GPU compositing pipeline renders guaranteed 120 FPS eraser strokes on high-refresh-rate devices.
 
 `scratch_reveal` solves this with a **2D Spatial Bitmask Grid Engine**:
-1. **Sub-0.1ms Progress Calculation**: Calculates the exact percentage scratched instantly without querying GPU memory or freezing the UI thread.
-2. **GPU `BlendMode.clear` Pipeline**: Buttery smooth 120 FPS eraser strokes on high-refresh-rate mobile devices.
-3. **Threshold Auto-Reveal & Animations**: Smoothly fades/scales out remaining foil once the target threshold (e.g. 60%) is reached.
-4. **Rich Styling**: Solid colors, multi-stop metallic gradients (silver/gold foil), or custom widget overlays.
-5. **Zero Native C++**: 100% pure Flutter & Dart across iOS, Android, Web, macOS, Windows, and Linux.
+1. **Zero-Latency Touch Response**: Immediate contact scratch and real-time streaming line follow.
+2. **Sub-0.1ms Progress Calculation**: Calculates the exact percentage scratched instantly without querying GPU memory or freezing the UI thread.
+3. **GPU `BlendMode.clear` Pipeline**: Buttery smooth 120 FPS eraser strokes on high-refresh-rate mobile devices.
+4. **Flying Metallic Foil Dust & Sparkles**: Physically simulated foil shavings and sparkle glints fly from the scratch point.
+5. **Threshold Auto-Reveal & Animations**: Smoothly fades/scales out remaining foil once the target threshold (e.g. 60%) is reached.
+6. **Rich Styling**: Solid colors, multi-stop metallic gradients (silver/gold foil), or custom widget overlays.
+7. **Zero Native C++**: 100% pure Flutter & Dart across iOS, Android, Web, macOS, Windows, and Linux.
 
 ---
 

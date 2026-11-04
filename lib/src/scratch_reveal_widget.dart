@@ -282,9 +282,9 @@ class ScratchRevealState extends State<ScratchReveal>
     }
   }
 
-  void _onPanStart(DragStartDetails details, BoxConstraints constraints) {
+  void _onPointerDown(PointerDownEvent event, BoxConstraints constraints) {
     if (!widget.enabled || _isThresholdReached) return;
-    final pos = details.localPosition;
+    final pos = event.localPosition;
     _lastPoint = pos;
     _addStroke(pos, pos, constraints);
     if (widget.enableHaptics) {
@@ -292,18 +292,24 @@ class ScratchRevealState extends State<ScratchReveal>
     }
   }
 
-  void _onPanUpdate(DragUpdateDetails details, BoxConstraints constraints) {
+  void _onPointerMove(PointerMoveEvent event, BoxConstraints constraints) {
     if (!widget.enabled || _isThresholdReached) return;
-    final currentPoint = details.localPosition;
+    final currentPoint = event.localPosition;
     if (_lastPoint != null) {
       final delta = currentPoint - _lastPoint!;
       _addStroke(_lastPoint!, currentPoint, constraints);
       _spawnParticles(currentPoint, delta);
+    } else {
+      _addStroke(currentPoint, currentPoint, constraints);
     }
     _lastPoint = currentPoint;
   }
 
-  void _onPanEnd(DragEndDetails details) {
+  void _onPointerUp(PointerUpEvent event) {
+    _lastPoint = null;
+  }
+
+  void _onPointerCancel(PointerCancelEvent event) {
     _lastPoint = null;
   }
 
@@ -356,11 +362,12 @@ class ScratchRevealState extends State<ScratchReveal>
                 builder: (context, child) {
                   return Opacity(
                     opacity: _opacityAnimation.value,
-                    child: GestureDetector(
+                    child: Listener(
                       behavior: HitTestBehavior.opaque,
-                      onPanStart: (d) => _onPanStart(d, constraints),
-                      onPanUpdate: (d) => _onPanUpdate(d, constraints),
-                      onPanEnd: _onPanEnd,
+                      onPointerDown: (e) => _onPointerDown(e, constraints),
+                      onPointerMove: (e) => _onPointerMove(e, constraints),
+                      onPointerUp: _onPointerUp,
+                      onPointerCancel: _onPointerCancel,
                       child: CustomPaint(
                         painter: ScratchPainter(
                           strokes: _strokes,

@@ -93,6 +93,16 @@ class ScratchPainter extends CustomPainter {
   }
 
   void _paintStroke(Canvas canvas, ScratchStroke stroke, Paint clearPaint) {
+    final delta = stroke.end - stroke.start;
+    final len = delta.distance;
+
+    // Instant punch hole on touch-down (tap or start of drag)
+    if (len < 0.5) {
+      clearPaint.style = PaintingStyle.fill;
+      canvas.drawCircle(stroke.start, stroke.size / 2, clearPaint);
+      return;
+    }
+
     switch (stroke.shape) {
       case ScratchBrushShape.circle:
         clearPaint.style = PaintingStyle.stroke;
@@ -109,19 +119,15 @@ class ScratchPainter extends CustomPainter {
         canvas.drawLine(stroke.start, stroke.end, clearPaint);
 
         // Side grooves for coin serration
-        final delta = stroke.end - stroke.start;
-        final len = delta.distance;
-        if (len > 0.5) {
-          final normal = Offset(-delta.dy / len, delta.dx / len);
-          final offset1 = normal * (stroke.size * 0.28);
-          final offset2 = normal * -(stroke.size * 0.28);
+        final normal = Offset(-delta.dy / len, delta.dx / len);
+        final offset1 = normal * (stroke.size * 0.28);
+        final offset2 = normal * -(stroke.size * 0.28);
 
-          clearPaint.strokeWidth = stroke.size * 0.45;
-          canvas.drawLine(
-              stroke.start + offset1, stroke.end + offset1, clearPaint);
-          canvas.drawLine(
-              stroke.start + offset2, stroke.end + offset2, clearPaint);
-        }
+        clearPaint.strokeWidth = stroke.size * 0.45;
+        canvas.drawLine(
+            stroke.start + offset1, stroke.end + offset1, clearPaint);
+        canvas.drawLine(
+            stroke.start + offset2, stroke.end + offset2, clearPaint);
         break;
 
       case ScratchBrushShape.rough:
@@ -133,16 +139,11 @@ class ScratchPainter extends CustomPainter {
         canvas.drawLine(stroke.start, stroke.end, clearPaint);
 
         // Jagged micro-fringe
-        final delta = stroke.end - stroke.start;
-        final len = delta.distance;
-        if (len > 0.5) {
-          final normal = Offset(-delta.dy / len, delta.dx / len);
-          final jitterScale = (stroke.jitter != 0.0 ? stroke.jitter : 0.5);
-          final offset = normal * (stroke.size * 0.35 * (jitterScale - 0.5));
-          clearPaint.strokeWidth = stroke.size * 0.5;
-          canvas.drawLine(
-              stroke.start + offset, stroke.end + offset, clearPaint);
-        }
+        final normal = Offset(-delta.dy / len, delta.dx / len);
+        final jitterScale = (stroke.jitter != 0.0 ? stroke.jitter : 0.5);
+        final offset = normal * (stroke.size * 0.35 * (jitterScale - 0.5));
+        clearPaint.strokeWidth = stroke.size * 0.5;
+        canvas.drawLine(stroke.start + offset, stroke.end + offset, clearPaint);
         break;
 
       case ScratchBrushShape.square:
@@ -191,11 +192,5 @@ class ScratchPainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(ScratchPainter oldDelegate) {
-    return oldDelegate.strokes.length != strokes.length ||
-        oldDelegate.particles.length != particles.length ||
-        oldDelegate.opacity != opacity ||
-        oldDelegate.coverColor != coverColor ||
-        oldDelegate.coverGradient != coverGradient;
-  }
+  bool shouldRepaint(covariant ScratchPainter oldDelegate) => true;
 }

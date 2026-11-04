@@ -1,3 +1,10 @@
+## 1.2.0
+
+- **Zero-Latency Real-Time Scratching**: Replaced gesture drag detector with direct low-level pointer event stream (`Listener`) eliminating touch slop delay.
+- **Instant Touch-Down Punch Hole**: Touching or tapping the card down immediately cuts an initial scratch hole without waiting for motion.
+- **Guaranteed Repaint Pipeline**: Fixed `CustomPainter.shouldRepaint` to never skip repaint frames during active scratches.
+- **Showcase Visuals**: Added crisp dark-mode vector SVG showcase banner in README documentation.
+
 ## 1.1.2
 
 * **Realistic Scratch Textures:** Added `ScratchBrushShape.coin` with parallel micro-grooves and `ScratchBrushShape.rough` with jagged organic edges simulating realistic coin lottery scratching.
