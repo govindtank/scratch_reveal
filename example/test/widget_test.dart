@@ -6,8 +6,8 @@ void main() {
     await tester.pumpWidget(const ScratchDemoApp());
     await tester.pumpAndSettle();
 
-    expect(find.text('Scratch Reveal Demo'), findsOneWidget);
-    expect(find.text('SCRATCH HERE TO REVEAL'), findsOneWidget);
+    expect(find.text('Realistic Scratch Reveal Demo'), findsOneWidget);
+    expect(find.text('SCRATCH WITH COIN / FINGER'), findsOneWidget);
     expect(find.text('Scratch Progress'), findsOneWidget);
   });
 }

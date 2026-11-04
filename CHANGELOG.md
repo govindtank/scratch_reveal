@@ -1,3 +1,8 @@
+## 1.2.1
+
+* **Discovery & Topics**: Refined search topics for lottery, scratch cards, and gamification widgets.
+* **Example Application**: Added interactive reveal notification feedback.
+
 ## 1.2.0
 
 - **Zero-Latency Real-Time Scratching**: Replaced gesture drag detector with direct low-level pointer event stream (`Listener`) eliminating touch slop delay.
