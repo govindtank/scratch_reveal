@@ -1,6 +1,6 @@
 name: scratch_reveal
-description: "Interactive scratch card and scratch-to-reveal canvas widget for Flutter with zero-latency foil scratching, flying particles, and fast bitmask tracking."
-version: 1.2.1
+description: "Interactive scratch card and scratch-to-reveal canvas widget for Flutter with turnkey RewardScratchCard, celebratory confetti bursts, metallic foil, and coin physics."
+version: 1.3.0
 homepage: https://github.com/govindtank/scratch_reveal
 repository: https://github.com/govindtank/scratch_reveal
 issue_tracker: https://github.com/govindtank/scratch_reveal/issues
@@ -11,10 +11,10 @@ funding:
 
 topics:
   - scratch-card
-  - scratch-to-reveal
-  - lottery
+  - reward
+  - confetti
   - gamification
-  - animation
+  - canvas
 
 platforms:
   android:

@@ -1,3 +1,12 @@
+## 1.3.0
+
+* **Turnkey `RewardScratchCard` Widget**: Gamified reward component inspired by Google Pay, CRED, and PhonePe:
+  * Metallic gold foil cover with coin badge and "Scratch & Win" callout.
+  * Built-in celebratory confetti explosion particle system (`enableConfetti: true`) when auto-revealed.
+  * Revealed reward layout: cashback / discount amount, subtitle, copyable promo coupon code box, and claim CTA button.
+* **Celebratory Confetti Cannon Physics**: Integrated 2D gravity and angular drag physics for airborne confetti ribbons bursting upwards on prize unlock.
+* **Upgraded Vector Visual Showcase**: High-resolution 1200x680 diagram illustrating the full 3-step lifecycle (Metallic Foil Cover -> Active Coin Gouge -> Unlocked Voucher with Confetti).
+
 ## 1.2.1
 
 * **Discovery & Topics**: Refined search topics for lottery, scratch cards, and gamification widgets.
@@ -15,8 +24,7 @@
 * **Realistic Scratch Textures:** Added `ScratchBrushShape.coin` with parallel micro-grooves and `ScratchBrushShape.rough` with jagged organic edges simulating realistic coin lottery scratching.
 * **Foil Dust & Shavings Particles:** Added dynamic metallic foil shaving flakes and sparkle dust physics (`ScratchParticle`) that fly and scatter naturally while scratching.
 * **Factory Constructors:** Added `ScratchReveal.silverLottery()` and `ScratchReveal.goldLottery()` for instant pre-styled scratch cards.
-* **Micro-Texture Shading:** Added subtle foil surface cross-hatch detail in `ScratchPainter`.
-
+* **Micro-Texture Shading:** Added subtle foil surface cross-hatch detail in `ScratchPainter`.\n
 ## 1.1.1
 
 * Added `ScratchFoilPreset` with gold and silver metallic foil presets.

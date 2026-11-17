@@ -13,123 +13,64 @@
   <img src="https://raw.githubusercontent.com/govindtank/scratch_reveal/main/doc/assets/scratch_showcase.svg" alt="scratch_reveal Showcase" width="100%">
 </p>
 
-An interactive, high-performance scratch-to-reveal card widget for Flutter. Features **zero-latency real-time foil scratching, instant punch holes on touch down, flying metallic foil dust particles, coin serration brushes, and sub-0.1ms spatial bitmask progress calculation**.
+An interactive, high-performance scratch-to-reveal card library and turnkey `RewardScratchCard` for Flutter. Features **celebratory confetti bursts, turnkey Google Pay & CRED style voucher rewards, flying metallic foil dust particles, coin serration brushes, and sub-0.1ms spatial bitmask progress calculation**.
 
 ---
 
-## ⚡ Why scratch_reveal?
+## ⚡ Key Features
 
-Existing scratch card packages on pub.dev suffer from fundamental architectural flaws:
-* 🚫 **Touch-Down Latency**: Gesture drag detectors ignore the initial touch or delay painting until moving 18px past slop thresholds. `scratch_reveal` creates an immediate circular punch hole on pointer contact.
-* 🚫 **Bitmap Pixel Reading Stutters**: Many packages read raw bitmap pixels out of CPU image buffers on every drag frame, causing micro-stutters and frame drops.
-* 🚫 **Dropped Repaints**: Mutable stroke arrays can prevent `CustomPainter` from invalidating. `scratch_reveal`'s GPU compositing pipeline renders guaranteed 120 FPS eraser strokes on high-refresh-rate devices.
-
-`scratch_reveal` solves this with a **2D Spatial Bitmask Grid Engine**:
-1. **Zero-Latency Touch Response**: Immediate contact scratch and real-time streaming line follow.
-2. **Sub-0.1ms Progress Calculation**: Calculates the exact percentage scratched instantly without querying GPU memory or freezing the UI thread.
-3. **GPU `BlendMode.clear` Pipeline**: Buttery smooth 120 FPS eraser strokes on high-refresh-rate mobile devices.
-4. **Flying Metallic Foil Dust & Sparkles**: Physically simulated foil shavings and sparkle glints fly from the scratch point.
-5. **Threshold Auto-Reveal & Animations**: Smoothly fades/scales out remaining foil once the target threshold (e.g. 60%) is reached.
-6. **Rich Styling**: Solid colors, multi-stop metallic gradients (silver/gold foil), or custom widget overlays.
-7. **Zero Native C++**: 100% pure Flutter & Dart across iOS, Android, Web, macOS, Windows, and Linux.
+| Feature | Description | Real-World Benefit |
+|---|---|---|
+| **Turnkey `RewardScratchCard`** | Complete gamified reward card with metallic foil, coupon code, and claim action | Ready in 3 lines of code |
+| **Celebratory Confetti Cannon** | Physics-based 2D confetti ribbons bursting upwards upon threshold auto-reveal | Delightful reward moment |
+| **Zero-Latency Touch Punch** | Touching or tapping down immediately punches a crisp hole without drag delay | Instant, tactile response |
+| **Coin & Rough Brushes** | Realistic coin edge serration with micro-grooves (`ScratchBrushShape.coin`) | Feels like a real coin scratcher |
+| **Flying Foil Dust Particles** | Dynamic metallic shaving flakes and sparkle dust that scatter while scratching | Realistic physical sensation |
+| **Sub-0.1ms Bitmask Tracking** | Zero heavy bitmap reading; pure 64-bit integer grid bitmasks on CPU | Constant 120 FPS on all devices |
 
 ---
 
-## 📦 Installation
+## 🚀 Quick Usage
 
-Add `scratch_reveal` to your `pubspec.yaml`:
-
-```yaml
-dependencies:
-  scratch_reveal: ^1.1.1
-```
-
-Or run:
-
-```bash
-flutter pub add scratch_reveal
-```
-
----
-
-## 🚀 Quick Start
-
-### 1. Metallic Foil Scratch Card with Auto-Reveal
+### 1. Turnkey Reward Card (Google Pay / CRED / PhonePe Style)
 
 ```dart
-import 'package:flutter/material.dart';
-import 'package:scratch_reveal/scratch_reveal.dart';
-
-class PromoScratchCard extends StatelessWidget {
-  const PromoScratchCard({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: 320,
-      height: 180,
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(20),
-        child: ScratchReveal(
-          brushSize: 40.0,
-          threshold: 0.65, // Auto-reveals at 65% scratched
-          coverGradient: const LinearGradient(
-            colors: [Color(0xFFE2E8F0), Color(0xFF94A3B8), Color(0xFF475569)],
-          ),
-          cover: const Center(
-            child: Text('SCRATCH TO REVEAL', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white)),
-          ),
-          revealedChild: Container(
-            color: const Color(0xFFD97706),
-            alignment: Alignment.center,
-            child: const Text('🎉 ₹500 VOUCHER CODE: LUCKY2026', style: TextStyle(color: Colors.white, fontSize: 16)),
-          ),
-          onThresholdReached: () {
-            print('Reward unlocked!');
-          },
-          onProgressUpdate: (progress) {
-            print('Progress: ${(progress * 100).toInt()}%');
-          },
-        ),
-      ),
-    );
-  }
-}
+RewardScratchCard(
+  rewardTitle: '₹ 250 Cashback',
+  rewardSubtitle: 'Credited on orders above ₹499',
+  couponCode: 'SWIGGY250',
+  coverTitle: 'Scratch & Win',
+  coverSubtitle: 'Scratch here to reveal your surprise cashback',
+  threshold: 0.45,       // Auto-reveal at 45% scratched
+  enableConfetti: true,  // Confetti explosion on unlock
+  onClaimPressed: () {
+    print('Voucher claimed!');
+  },
+)
 ```
 
 ---
 
-### 2. Programmatic Reveal & Reset
+### 2. Lower-Level Custom Scratch Card
 
 ```dart
-final scratchKey = GlobalKey<ScratchRevealState>();
-
-// Reset the card back to unscratched:
-scratchKey.currentState?.reset();
-
-// Automatically reveal the reward:
-scratchKey.currentState?.reveal();
+ScratchReveal(
+  brushSize: 40.0,
+  brushShape: ScratchBrushShape.coin,
+  threshold: 0.50,
+  autoReveal: true,
+  coverGradient: const LinearGradient(
+    colors: [Color(0xFFFFD700), Color(0xFFB8860B)],
+  ),
+  revealedChild: Container(
+    color: const Color(0xFF1E293B),
+    child: const Center(
+      child: Text('🎉 500 COINS WON!', style: TextStyle(color: Colors.white)),
+    ),
+  ),
+  onThresholdReached: () => print('Unlocked!'),
+)
 ```
-
----
-
-## 🛠️ API Reference
-
-### `ScratchReveal` Properties
-
-| Property | Type | Default | Description |
-| :--- | :--- | :--- | :--- |
-| `revealedChild` | `Widget` | **Required** | The underlying prize or content to be revealed. |
-| `cover` | `Widget?` | `null` | Optional visual widget overlay (e.g. icon + text). |
-| `coverColor` | `Color` | `Color(0xFF64748B)` | Solid color of the scratch foil. |
-| `coverGradient`| `Gradient?` | `null` | Gradient for realistic metallic foil textures. |
-| `brushSize` | `double` | `36.0` | Thickness of the eraser stroke in logical pixels. |
-| `threshold` | `double` | `0.60` | Fraction in `[0.0, 1.0]` needed to trigger auto-reveal. |
-| `autoReveal` | `bool` | `true` | Whether to animate remaining foil away at threshold. |
-| `revealDuration`| `Duration`| `Duration(milliseconds: 600)` | Transition animation duration. |
-| `onThresholdReached`| `VoidCallback?` | `null` | Fired once when threshold is met. |
-| `onProgressUpdate`| `ValueChanged<double>?` | `null` | Continuous progress callback `[0.0, 1.0]`. |
-| `enableHaptics` | `bool` | `false` | Triggers subtle tactile haptics while scratching. |
 
 ---
 
