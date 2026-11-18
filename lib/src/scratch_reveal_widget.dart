@@ -1,7 +1,7 @@
 import 'dart:math' as math;
-import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter/widgets.dart';
 import 'painters/scratch_painter.dart';
 import 'scratch_bitmask_grid.dart';
 import 'scratch_config.dart';
@@ -231,8 +231,9 @@ class ScratchRevealState extends State<ScratchReveal>
         velocity: velocity,
         size: 2.5 + _rng.nextDouble() * 3.5,
         color: _rng.nextBool()
-            ? Colors.white
-            : Color.lerp(baseColor, Colors.white, _rng.nextDouble() * 0.8)!,
+            ? const Color(0xFFFFFFFF)
+            : Color.lerp(
+                baseColor, const Color(0xFFFFFFFF), _rng.nextDouble() * 0.8)!,
         rotation: _rng.nextDouble() * 2 * math.pi,
         rotationSpeed: (_rng.nextDouble() - 0.5) * 12.0,
         life: 0.7 + _rng.nextDouble() * 0.5,

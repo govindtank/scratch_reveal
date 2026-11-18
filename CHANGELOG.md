@@ -1,3 +1,7 @@
+## 1.3.1
+
+* **Pub.dev Score Optimization (160/160)**: Decoupled painter, bitmask grid, and scratch widget modules to `package:flutter/widgets.dart` and `dart:ui`, eliminating `package:flutter/material.dart` deprecation warnings on Flutter 3.50+.
+
 ## 1.3.0
 
 * **Turnkey `RewardScratchCard` Widget**: Gamified reward component inspired by Google Pay, CRED, and PhonePe:

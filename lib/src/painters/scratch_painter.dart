@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import '../scratch_config.dart';
 
 /// High-performance [CustomPainter] that cuts realistic textured scratch paths out of a cover foil layer using GPU `BlendMode.clear`, and renders flying foil dust particles.
@@ -78,7 +78,7 @@ class ScratchPainter extends CustomPainter {
 
   void _paintFoilTexture(Canvas canvas, Size size) {
     final texturePaint = Paint()
-      ..color = Colors.white.withValues(alpha: 0.04)
+      ..color = const Color(0xFFFFFFFF).withValues(alpha: 0.04)
       ..strokeWidth = 1.0
       ..style = PaintingStyle.stroke;
 
@@ -182,8 +182,8 @@ class ScratchPainter extends CustomPainter {
 
       // Center bright glint
       final glintPaint = Paint()
-        ..color =
-            Colors.white.withValues(alpha: (p.opacity * 0.8).clamp(0.0, 1.0))
+        ..color = const Color(0xFFFFFFFF)
+            .withValues(alpha: (p.opacity * 0.8).clamp(0.0, 1.0))
         ..style = PaintingStyle.fill;
       canvas.drawCircle(Offset.zero, (r * 0.35).clamp(0.5, 2.0), glintPaint);
 

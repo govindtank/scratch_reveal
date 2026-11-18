@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 /// Brush tip shapes and textures for scratching.
 enum ScratchBrushShape {

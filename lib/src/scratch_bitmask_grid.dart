@@ -1,5 +1,5 @@
 import 'dart:math' as math;
-import 'package:flutter/material.dart';
+import 'dart:ui';
 
 /// Ultra-fast 2D spatial bitmask grid for estimating scratched area percentage in sub-millisecond time.
 class ScratchBitmaskGrid {
